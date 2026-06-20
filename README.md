@@ -1,16 +1,82 @@
-# React + Vite
+# Sidebet — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The web interface for **Sidebet**, a private prediction market for friend groups —
+like Kalshi, but the currency is virtual points instead of money. Users browse open
+markets, place wagers, and watch a live leaderboard of who's winning their bets.
 
-Currently, two official plugins are available:
+This repository is the **frontend** (React + Vite). It talks to a Spring Boot API
+in a separate repo: [Sidebet](https://github.com/jsanchez04/Sidebet).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> **Live app:** https://sidebet-frontend.vercel.app
+> (Backend on a free tier — the first load after inactivity may take ~30–50 seconds to wake up.)
 
-## React Compiler
+## Screenshot
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> _Add a screenshot here — drag an image into this section while editing on GitHub,
+> or save one to `public/` and reference it:_ `![Sidebet](public/screenshot.png)`
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Browse all markets with a live YES/NO "chance %" bar derived from current wagers.
+- Create new markets from the page (no API tools required).
+- Place YES/NO wagers and resolve markets directly in the UI, with a user switcher
+  to act as different friends.
+- A leaderboard ranking every player by point balance, updating as bets resolve.
+- Graceful error state when the backend is unreachable.
+
+## Tech stack
+
+| Layer       | Choice            |
+|-------------|-------------------|
+| Framework   | React             |
+| Build tool  | Vite              |
+| Language    | JavaScript (JSX)  |
+| Styling     | Plain CSS         |
+| Deployment  | Vercel            |
+
+## Running locally
+
+**Prerequisites:** Node.js 20+ and the [Sidebet backend](https://github.com/jsanchez04/Sidebet)
+running on `http://localhost:8080`.
+
+```bash
+git clone https://github.com/jsanchez04/sidebet-frontend.git
+cd sidebet-frontend
+npm install
+npm run dev
+```
+
+The app runs on `http://localhost:5173`.
+
+## Configuration
+
+The backend URL is set via an environment variable so the same code works locally
+and in production:
+
+| Variable        | Example                              | Used for                    |
+|-----------------|--------------------------------------|-----------------------------|
+| `VITE_API_URL`  | `http://localhost:8080`              | Base URL of the Sidebet API |
+
+For local development, copy `.env.example` to `.env.local` and adjust if needed.
+If the variable is unset, the app falls back to `http://localhost:8080`. In
+production (Vercel), set `VITE_API_URL` to the deployed backend's URL.
+
+## How it connects to the backend
+
+On load, the app fetches `/markets` and `/users` from the API, renders the markets
+list and a balance-sorted leaderboard, and exposes a Refresh button to re-fetch.
+All requests go to the URL in `VITE_API_URL`.
+
+## Project status & roadmap
+
+The full interactive experience (create markets, place wagers, resolve outcomes,
+live chance %, leaderboard) is complete and deployed. Planned next:
+
+- [ ] Multiple-outcome markets (early / on time / 5 min late / …)
+- [ ] Per-market closing times
+- [ ] Real user accounts instead of a manual user switcher
+
+## License
+
+This project is for portfolio and educational purposes.
+<img width="1005" height="497" alt="Screenshot 2026-06-19 at 8 47 32 PM" src="https://github.com/user-attachments/assets/9bbe070f-a470-47af-99eb-d0c40d906d43" />
