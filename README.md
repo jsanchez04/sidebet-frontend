@@ -11,9 +11,7 @@ in a separate repo: [Sidebet](https://github.com/jsanchez04/Sidebet).
 > (Backend on a free tier — the first load after inactivity may take ~30–50 seconds to wake up.)
 
 ## Screenshot
-
-> _Add a screenshot here — drag an image into this section while editing on GitHub,
-> or save one to `public/` and reference it:_ `![Sidebet](public/screenshot.png)`
+<img width="1005" height="497" alt="Screenshot 2026-06-19 at 8 47 32 PM" src="https://github.com/user-attachments/assets/9bbe070f-a470-47af-99eb-d0c40d906d43" />
 
 ## Features
 
@@ -79,4 +77,4 @@ live chance %, leaderboard) is complete and deployed. Planned next:
 ## License
 
 This project is for portfolio and educational purposes.
-<img width="1005" height="497" alt="Screenshot 2026-06-19 at 8 47 32 PM" src="https://github.com/user-attachments/assets/9bbe070f-a470-47af-99eb-d0c40d906d43" />
+
